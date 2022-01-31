@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>pottery</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<h2>Menu</h2>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="coop1.html">Coop1</a></li>
+						<li><a href="coop2.html">Coop2</a></li>
+						<li><a href="davinci.html">DaVinci</a></li>
+						<li><a href="pottery.html">Simulating Pottery </a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Simulating Pottery</h1>
+							<span class="image main"><img src="images/pottery_cover2.jpg" alt="" /></span>
+							<p>In the winter semester of 2021, I took a class called Elec 341
+								which taught us about control systems. In this class, we learnt 
+								how to simulate and control complex electo-mechanical circuits and 
+								about how to evaluate them as feedback functions. One day, when I 
+								was doing pottery at home, I thought I could apply the exact same principals. 
+							</p>
+							<p> So I took it to Matlab! I seeked to answer one question: 
+								Could I try to model the same thing that I see 
+								while doing pottery by hand, with transfer functions that we used in 
+								this class?
+							</p>
+							<p> I stated out with just trying to model the rim. Image starting with a perfect circle, 
+								now I want to stretch this circle with my hands to make it bigger. I do that by pulling on 
+								either side of the circle, until it becomes an ellipse. Then, I quickly add force in the opposite 
+								direction as the wheel rotates to smoothen out this ellipse to a new, bigger, circle. 
+								With the help of Matlab, I applied that same principal to all other parts of the 3D figure, 
+								and made Matlab simulate it with 3D plots and animations
+			
+							</p>
+							<span class="image">
+								<img src="images/potterysim.gif" alt="" />
+							</span>
+							
+												
+							
+							<p> Go check out my github repo for this project here: </p>
+							<ul class="actions stacked">
+								<li><a href="https://github.com/sanjanachawla/potterySimulation.git" class="button big wide smooth-scroll-middle"> Matlab Code!</a></li>
+							</ul>
+							<p> and the slide deck I used to present it here: </p><ul class="actions stacked">
+							<ul class="actions stacked">
+								<li><a href="https://docs.google.com/presentation/d/1yDbpotHOY0OB0ID5TkE2IlmyuVN12o7P1Fe2L_aQf_c/edit?usp=sharing" class="button big wide smooth-scroll-middle"> Presentation!</a></li>
+							</ul>
+						</div>
+					</div>
+
+			
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

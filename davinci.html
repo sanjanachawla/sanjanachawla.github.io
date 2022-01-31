@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>DaVinci</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+								<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<h2>Menu</h2>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="coop1.html">Coop1</a></li>
+						<li><a href="coop2.html">Coop2</a></li>
+						<li><a href="davinci.html">DaVinci</a></li>
+						<li><a href="pottery.html">Simulating Pottery </a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Working With the DaVinci </h1>
+							<span class="image main"><img src="images/davinci.jpg" alt="" /></span>
+							<p>If you are familiar with the world of surgical robotics, you know the famous DaVinci
+                                Robot. For my second capstone at UBC, a team of 3 others and I were lucky enough to get to be 
+                                partnered with a an R&D lab at UBC that is works with the surgical robot. 
+                            </p>
+							<p>This is a teleoperated robot that assists surgeons while performing minimally invasive surgery.
+                                The surgeons interact with the robot through a console where they can control its movements, and 
+                                the view the surgical workspace through a camera  feed. 
+                            </p>
+							<p>But robot-assisted-tele-operated-surgery still has its drawbacks. The surgeons use both their arms
+                                to control the robot's arms, but when they want to switch the viewpoint of their workspace, they gave to 
+                                use the clutch to then connect to the camera joints to be able to control its position instead of the robot's.
+                                As you can imagine, this involves a lot of back and forth, and stopping the current task they they are working
+                                on to switch their viewpoint. 
+                            </p>
+                            <p>Our job, as the team of Capstone students, is to automate the camera movements of the robot so that it follows
+                                the surgical task taking place. This would reduce the cognitive load applied on the surgeons, and hopefully help them
+                                perform surgeries faster, and with a bit more ease. The best analogy would be them switching from driving a stick operated car
+                                to an automatic. 
+                            </p>
+                            <h2>Into the techincal side ... </h2>
+                            <p> We decided to take an optimization approach to this problem. By building on previous work done by the lab 
+                                We took a set of 8 movement goals or rules that the camera should follow while the robot is operating. We 
+                                assign weights to how much we value that particular rule, and the algorithm works with minimizing the pssoble losses. </p>
+                                <p> All of the coding for this project was done in Python, and we used CoppeliaSim to simulate our results, and 
+                                    after verifing our results in sim, we moved on to trying it out on the real robot too.
+                                </p>
+						</div>
+					</div>
+
+				
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
