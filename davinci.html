@@ -63,12 +63,46 @@
                                 to an automatic. 
                             </p>
                             <h2>Into the techincal side ... </h2>
-                            <p> We decided to take an optimization approach to this problem. By building on previous work done by the lab 
-                                We took a set of 8 movement goals or rules that the camera should follow while the robot is operating. We 
-                                assign weights to how much we value that particular rule, and the algorithm works with minimizing the pssoble losses. </p>
-                                <p> All of the coding for this project was done in Python, and we used CoppeliaSim to simulate our results, and 
-                                    after verifing our results in sim, we moved on to trying it out on the real robot too.
+							<p> Our optimation framework is built around a "ring walk" task instead of in a surgical setting. This is a task that 
+								surgeons also use to train on before performing surgery with the DaVinci system. The task is that you move a ring 
+								through a wire without the edges of the ring touching the wire inside it. Our job was to automate the camera 
+								following the ring moving through the track. 
+							</p>
+							<span class="image main"><img src="images/ring_walk.svg" alt="" /></span>
+                            <p> We decided to take an optimization approach to this problem. By building on previous work done by the lab,  
+                                we took a set of 8 movement goals or rules that the camera should follow while the robot is operating. We 
+                                assign weights to how much we value that particular rule, and the algorithm works with minimizing the possible losses. </p>
+                                <p> All of the coding for this project was done in Python, and we used CoppeliaSim to simulate our results. </p>
+								<p>The initial Objective Rules for the camera's motion are:
+									<ul>
+										<li> L1: Centering</li>
+										<li> L2: Orientation Matching</li>
+										<li> L3: Appropriate Distance</li>
+										<li> L4: Horizontal Axis Alignment </li>
+										<li> L5: Vertical Axis Alignment</li>
+										<li> L6: Minimized Velocity Magnitude for Camera</li> 
+										<li> L7: Minimized joint velocity</li> 
+										<li> L8: Collision Prevention</li>
+									</ul>
+									<p> An image defining these rules better is shown below:</p>
+									<span class="image main"><img src="images/objectives.svg" alt="" /></span>
+							
+									
+									
                                 </p>
+								<h2>My Role </h2>
+								<p> My role in the project was to develope the optimization framework further. We wanted to optimize the weights
+									for each of the loss terms, to decide their final values. And also add any additional objectives that might
+									need to be included for the best camera motion. I added a new objective inspired by cinematography, called 
+									the 180 - Degree Rule.  We wanted the camera to always stay on the POV of the audiance. 
+									</p>
+									<span class="image main"><img src="images/180_degree.svg" alt="" /></span>
+								<p> This was implemented by taking the dot product between the normalized global y vector, and the vector defining
+									 the orientation of the camera</p>
+									 <span class="image main"><img src="images/dot_prod.svg" alt="" /></span>
+								<p> Finally, I retuned the weights to give us the lowest possible errors, and the final optimation framwork in 
+									simulation is shown below</p>
+									<span class="image main"><img src="images/overview.svg" alt="" /></span>
 						</div>
 					</div>
 
