@@ -2646,7 +2646,7 @@ input, select, textarea {
 					-ms-transition: opacity 0.5s ease;
 					transition: opacity 0.5s ease;
 					content: '';
-					display: block;
+					display: none;
 					position: absolute;
 					top: 0;
 					left: 0;

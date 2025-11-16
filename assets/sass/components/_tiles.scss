@@ -60,7 +60,7 @@
 					@include vendor('pointer-events', 'none');
 					@include vendor('transition', 'opacity #{$duration} #{$ease}');
 					content: '';
-					display: block;
+					display: none;
 					position: absolute;
 					top: 0;
 					left: 0;
