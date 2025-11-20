@@ -2749,6 +2749,22 @@ input, select, textarea {
 				background-color: #8499e7;
 			}
 
+/* Allow specific tiles to disable the colored overlay (useful for hero/feature images)
+   Add the class `no-overlay` to the article element to remove the :before overlay
+   and cancel the scale transform so the image appears as a normal static image. */
+.tiles article.no-overlay > .image:before {
+	display: none;
+}
+.tiles article.no-overlay > .image {
+	-moz-transform: none !important;
+	-webkit-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
+}
+.tiles article.no-overlay > .image img {
+	border-radius: 4px; /* keep consistent rounding */
+}
+
 			body:not(.is-touch) .tiles article:hover > .image {
 				-moz-transform: scale(1.1);
 				-webkit-transform: scale(1.1);
