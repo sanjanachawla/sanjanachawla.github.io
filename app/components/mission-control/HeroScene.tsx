@@ -17,7 +17,7 @@ type HeroSceneProps = {
 
 export function HeroScene({ missionEntered }: HeroSceneProps) {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="absolute inset-0 z-0 lg:left-1/3">
       <Canvas
         camera={{ position: [1.35, 1.05, 7.4], fov: 42 }}
         dpr={[1, 1.75]}
