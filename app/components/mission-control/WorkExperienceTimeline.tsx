@@ -35,6 +35,24 @@ type Experience = {
   orbit: OrbitPosition;
 };
 
+type PlanetTheme = {
+  name: string;
+  body: string;
+  idleShadow: string[];
+  activeShadow: string[];
+  ringClassName?: string;
+  band?: {
+    background: string;
+    height: string;
+    top: string;
+    transform: string;
+  };
+  spots?: Array<{
+    background: string;
+    className: string;
+  }>;
+};
+
 const experiences: Experience[] = [
   {
     id: "mda",
@@ -56,7 +74,7 @@ const experiences: Experience[] = [
       "Implemented and benchmarked detection algorithms from academic papers, performing competitive analysis to improve vessel detection accuracy and robustness.",
     ],
     techStack: ["Python", "SQL", "PyTest", "CI/CD", "MATLAB", "AIT", "EGSE", "Telemetry"],
-    orbit: { left: 78, top: 11, side: "left" },
+    orbit: { left: 91, top: 12, side: "left" },
   },
   {
     id: "dwave",
@@ -74,7 +92,7 @@ const experiences: Experience[] = [
       "Worked on a project to demagnify electronics used in quantum computers.",
     ],
     techStack: ["C", "STM32", "Python", "Ethernet", "Firmware", "Power Systems"],
-    orbit: { left: 60, top: 34, side: "right" },
+    orbit: { left: 80, top: 37.3, side: "left" },
   },
   {
     id: "ubc",
@@ -93,7 +111,7 @@ const experiences: Experience[] = [
       "Presented results to the team through presentations and reports.",
     ],
     techStack: ["MATLAB", "Data Viz", "Statistics", "Differential Equations", "Optics"],
-    orbit: { left: 38, top: 59, side: "right" },
+    orbit: { left: 80, top: 62.7, side: "left" },
   },
   {
     id: "intel",
@@ -112,11 +130,111 @@ const experiences: Experience[] = [
       "Started a group promoting women in STEM through technical tutorials and networking sessions for female-identifying co-ops.",
     ],
     techStack: ["C", "Verilog", "Python", "FPGA", "ECC", "PowerBI", "Statistics"],
-    orbit: { left: 62, top: 84, side: "left" },
+    orbit: { left: 91, top: 88, side: "left" },
   },
 ];
 
-const traceLengths = [0.18, 0.44, 0.7, 0.96];
+const orbitPath = "M382 58 A58 272 0 0 0 382 602";
+
+const orbitGlowSegments = [
+  { dashArray: "0.22 1", dashOffset: 0 },
+  { dashArray: "0.22 1", dashOffset: -0.22 },
+  { dashArray: "0.22 1", dashOffset: -0.57 },
+  { dashArray: "0.22 1", dashOffset: -0.78 },
+];
+
+const planetThemes: PlanetTheme[] = [
+  {
+    name: "ice planet",
+    body: "radial-gradient(circle at 34% 28%, #f0fdff 0 12%, #a5f3fc 24%, #38bdf8 58%, #075985 100%)",
+    idleShadow: [
+      "0 0 7px rgba(125,211,252,0.18)",
+      "0 0 12px rgba(125,211,252,0.28)",
+      "0 0 7px rgba(125,211,252,0.18)",
+    ],
+    activeShadow: [
+      "0 0 18px rgba(186,230,253,0.85), 0 0 34px rgba(56,189,248,0.55)",
+      "0 0 26px rgba(224,242,254,1), 0 0 52px rgba(34,211,238,0.9)",
+      "0 0 18px rgba(186,230,253,0.85), 0 0 34px rgba(56,189,248,0.55)",
+    ],
+    band: {
+      background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.58), transparent)",
+      height: "18%",
+      top: "56%",
+      transform: "rotate(-16deg)",
+    },
+  },
+  {
+    name: "ringed planet",
+    body: "radial-gradient(circle at 34% 28%, #fef3c7 0 13%, #fbbf24 34%, #c2410c 67%, #4c0519 100%)",
+    idleShadow: [
+      "0 0 7px rgba(251,191,36,0.16)",
+      "0 0 12px rgba(251,191,36,0.26)",
+      "0 0 7px rgba(251,191,36,0.16)",
+    ],
+    activeShadow: [
+      "0 0 18px rgba(253,230,138,0.85), 0 0 34px rgba(251,191,36,0.55)",
+      "0 0 26px rgba(254,243,199,1), 0 0 54px rgba(245,158,11,0.88)",
+      "0 0 18px rgba(253,230,138,0.85), 0 0 34px rgba(251,191,36,0.55)",
+    ],
+    ringClassName:
+      "absolute left-1/2 top-1/2 h-2 w-10 -translate-x-1/2 -translate-y-1/2 rotate-[-17deg] rounded-full border border-amber-100/60 bg-amber-200/8 shadow-[0_0_10px_rgba(251,191,36,0.26)]",
+    band: {
+      background: "linear-gradient(90deg, transparent, rgba(253,230,138,0.55), transparent)",
+      height: "14%",
+      top: "46%",
+      transform: "rotate(-11deg)",
+    },
+  },
+  {
+    name: "ocean planet",
+    body: "radial-gradient(circle at 34% 28%, #d1fae5 0 12%, #2dd4bf 29%, #0f766e 58%, #052e16 100%)",
+    idleShadow: [
+      "0 0 7px rgba(45,212,191,0.16)",
+      "0 0 12px rgba(45,212,191,0.26)",
+      "0 0 7px rgba(45,212,191,0.16)",
+    ],
+    activeShadow: [
+      "0 0 18px rgba(153,246,228,0.85), 0 0 34px rgba(45,212,191,0.55)",
+      "0 0 26px rgba(204,251,241,1), 0 0 54px rgba(20,184,166,0.88)",
+      "0 0 18px rgba(153,246,228,0.85), 0 0 34px rgba(45,212,191,0.55)",
+    ],
+    spots: [
+      {
+        background: "rgba(167,243,208,0.72)",
+        className: "absolute left-[18%] top-[48%] h-2 w-4 rounded-full blur-[1px]",
+      },
+      {
+        background: "rgba(240,253,250,0.48)",
+        className: "absolute right-[16%] top-[30%] h-1.5 w-3 rounded-full blur-[1px]",
+      },
+    ],
+  },
+  {
+    name: "red planet",
+    body: "radial-gradient(circle at 34% 28%, #fed7aa 0 12%, #fb7185 30%, #be123c 62%, #450a0a 100%)",
+    idleShadow: [
+      "0 0 7px rgba(251,113,133,0.16)",
+      "0 0 12px rgba(251,113,133,0.26)",
+      "0 0 7px rgba(251,113,133,0.16)",
+    ],
+    activeShadow: [
+      "0 0 18px rgba(254,205,211,0.85), 0 0 34px rgba(251,113,133,0.58)",
+      "0 0 26px rgba(255,228,230,1), 0 0 54px rgba(244,63,94,0.9)",
+      "0 0 18px rgba(254,205,211,0.85), 0 0 34px rgba(251,113,133,0.58)",
+    ],
+    spots: [
+      {
+        background: "rgba(127,29,29,0.5)",
+        className: "absolute left-[18%] top-[52%] h-2 w-5 rounded-full blur-[1px]",
+      },
+      {
+        background: "rgba(254,215,170,0.48)",
+        className: "absolute right-[18%] top-[34%] h-1.5 w-3 rounded-full blur-[1px]",
+      },
+    ],
+  },
+];
 
 const particles = [
   { left: "7%", top: "16%", delay: 0, duration: 8 },
@@ -133,6 +251,8 @@ export function WorkExperienceTimeline() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const rootRef = useRef<HTMLDivElement | null>(null);
   const activeExperience = activeIndex === null ? null : experiences[activeIndex];
+  const activeOrbitSegment =
+    activeIndex === null ? null : orbitGlowSegments[activeIndex];
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
   const smoothX = useSpring(pointerX, { damping: 24, stiffness: 90 });
@@ -176,7 +296,7 @@ export function WorkExperienceTimeline() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-visible"
       onPointerDown={() => setActiveIndex(null)}
       onPointerLeave={resetParallax}
       onPointerMove={updateParallax}
@@ -202,9 +322,9 @@ export function WorkExperienceTimeline() {
         Technical Work Experience
       </h2>
 
-      <div className="relative mt-6 grid gap-6 xl:grid-cols-[minmax(340px,400px)_minmax(500px,1fr)] xl:items-stretch">
+      <div className="relative mt-4 grid gap-5 xl:grid-cols-[minmax(420px,450px)_minmax(540px,1fr)] xl:items-stretch">
         <motion.div
-          className="relative min-h-[660px] overflow-visible"
+          className="relative h-[clamp(540px,calc(100vh-10rem),620px)] min-h-0 overflow-visible bg-[radial-gradient(circle_at_46%_50%,rgba(14,116,144,0.18),transparent_58%)]"
           style={{ x: orbitX, y: orbitY }}
         >
           <svg
@@ -223,7 +343,7 @@ export function WorkExperienceTimeline() {
               </filter>
             </defs>
             <path
-              d="M246 620C104 520 94 374 202 292C306 213 348 129 333 54"
+              d={orbitPath}
               fill="none"
               stroke="rgba(103,232,249,0.18)"
               strokeDasharray="10 12"
@@ -231,21 +351,26 @@ export function WorkExperienceTimeline() {
               strokeWidth="2"
             />
             <motion.path
-              key={activeExperience?.id ?? "standby"}
-              animate={{ pathLength: activeIndex === null ? 0 : traceLengths[activeIndex] }}
-              d="M246 620C104 520 94 374 202 292C306 213 348 129 333 54"
+              animate={{
+                opacity: activeOrbitSegment ? 1 : 0,
+                strokeDashoffset: activeOrbitSegment?.dashOffset ?? 0,
+              }}
+              d={orbitPath}
               fill="none"
               filter="url(#orbitGlow)"
-              initial={{ pathLength: 0 }}
+              initial={false}
+              pathLength={1}
               stroke="rgba(34,211,238,0.9)"
+              strokeDasharray={activeOrbitSegment?.dashArray ?? "0 1"}
               strokeLinecap="round"
               strokeWidth="3"
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             />
           </svg>
 
           {experiences.map((experience, index) => {
             const isActive = index === activeIndex;
+            const planet = planetThemes[index];
 
             return (
               <div
@@ -254,7 +379,10 @@ export function WorkExperienceTimeline() {
                 style={{
                   left: `${experience.orbit.left}%`,
                   top: `${experience.orbit.top}%`,
-                  transform: "translate(-50%, -50%)",
+                  transform:
+                    experience.orbit.side === "left"
+                      ? "translate(calc(-100% + 10px), -50%)"
+                      : "translate(-10px, -50%)",
                 }}
               >
                 <motion.button
@@ -269,28 +397,50 @@ export function WorkExperienceTimeline() {
                   } focus:outline-none`}
                 >
                   <motion.span
+                    aria-hidden="true"
                     animate={{
-                      boxShadow: isActive
-                        ? [
-                            "0 0 18px rgba(103,232,249,0.8)",
-                            "0 0 34px rgba(34,211,238,1)",
-                            "0 0 18px rgba(103,232,249,0.8)",
-                          ]
-                        : [
-                            "0 0 10px rgba(103,232,249,0.35)",
-                            "0 0 18px rgba(103,232,249,0.65)",
-                            "0 0 10px rgba(103,232,249,0.35)",
-                          ],
+                      boxShadow: isActive ? planet.activeShadow : planet.idleShadow,
+                      scale: isActive ? [1, 1.08, 1] : [1, 1.02, 1],
                     }}
-                    className={`h-5 w-5 shrink-0 rounded-full border ${
-                      isActive
-                        ? "border-cyan-100 bg-cyan-200"
-                        : "border-cyan-200/70 bg-[#020713]"
+                    className={`relative h-7 w-7 shrink-0 rounded-full transition-opacity duration-300 ${
+                      isActive ? "opacity-100" : "opacity-55"
                     }`}
-                    transition={{ duration: 2.1, repeat: Infinity }}
-                  />
+                    title={planet.name}
+                    transition={{ duration: isActive ? 1.7 : 2.4, repeat: Infinity }}
+                  >
+                    {planet.ringClassName ? (
+                      <span className={planet.ringClassName} />
+                    ) : null}
+                    <span
+                      className={`absolute inset-0 overflow-hidden rounded-full border ${
+                        isActive ? "border-white/90" : "border-cyan-100/25"
+                      }`}
+                      style={{ background: planet.body }}
+                    >
+                      <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_28%_24%,rgba(255,255,255,0.72),transparent_28%)]" />
+                      <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_74%_78%,rgba(0,0,0,0.42),transparent_46%)]" />
+                      {planet.band ? (
+                        <span
+                          className="absolute left-[-16%] w-[132%] rounded-full opacity-80"
+                          style={{
+                            background: planet.band.background,
+                            height: planet.band.height,
+                            top: planet.band.top,
+                            transform: planet.band.transform,
+                          }}
+                        />
+                      ) : null}
+                      {planet.spots?.map((spot) => (
+                        <span
+                          key={`${planet.name}-${spot.className}`}
+                          className={spot.className}
+                          style={{ background: spot.background }}
+                        />
+                      ))}
+                    </span>
+                  </motion.span>
                   <span
-                    className={`h-px w-12 shrink-0 bg-gradient-to-r transition duration-300 ${
+                    className={`h-px w-8 shrink-0 bg-gradient-to-r transition duration-300 ${
                       experience.orbit.side === "left"
                         ? isActive
                           ? "from-transparent via-cyan-300 to-cyan-100 shadow-[0_0_16px_rgba(103,232,249,0.95)]"
@@ -301,10 +451,10 @@ export function WorkExperienceTimeline() {
                     }`}
                   />
                   <span
-                    className={`block w-72 border p-4 text-left backdrop-blur-xl transition duration-300 ${
+                    className={`block w-[16.5rem] border p-4 text-left backdrop-blur-xl transition duration-300 ${
                       isActive
-                        ? "border-cyan-200/70 bg-slate-900/86 shadow-[0_0_34px_rgba(34,211,238,0.18)]"
-                        : "border-cyan-300/18 bg-slate-950/58 group-hover:border-cyan-200/55 group-hover:bg-slate-900/74"
+                        ? "border-cyan-100/75 bg-[#0d2b4c]/90 shadow-[0_0_36px_rgba(34,211,238,0.22)]"
+                        : "border-cyan-200/24 bg-[#08213f]/72 group-hover:border-cyan-100/60 group-hover:bg-[#0b294e]/82"
                     }`}
                   >
                     <span className="block font-mono text-xs uppercase tracking-[0.16em] text-emerald-100/80">
@@ -329,7 +479,7 @@ export function WorkExperienceTimeline() {
             <motion.article
               key={activeExperience.id}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              className="relative min-h-[660px] overflow-hidden border border-cyan-300/30 bg-slate-950/62 p-6 shadow-[0_0_70px_rgba(14,165,233,0.18)] backdrop-blur-2xl"
+              className="relative h-[clamp(540px,calc(100vh-10rem),620px)] min-h-0 overflow-hidden border border-cyan-200/35 bg-[#08213f]/72 p-5 shadow-[0_0_70px_rgba(14,165,233,0.2)] backdrop-blur-2xl"
               exit={{ opacity: 0, x: 28, scale: 0.98 }}
               initial={{ opacity: 0, x: 36, scale: 0.98 }}
               onPointerDown={(event) => event.stopPropagation()}
@@ -345,16 +495,16 @@ export function WorkExperienceTimeline() {
                 initial={{ opacity: 0, x: 18 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center border border-cyan-200/50 bg-cyan-300/10 font-mono text-lg font-semibold uppercase tracking-[0.08em] text-cyan-100 shadow-[0_0_30px_rgba(34,211,238,0.18)]">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-cyan-100/55 bg-cyan-200/12 font-mono text-base font-semibold uppercase tracking-[0.08em] text-cyan-50 shadow-[0_0_30px_rgba(34,211,238,0.2)]">
                       {activeExperience.logo}
                     </div>
                     <div>
                       <div className="font-mono text-xs uppercase tracking-[0.24em] text-cyan-200/80">
                         Mission Detail Panel
                       </div>
-                      <h3 className="mt-3 text-3xl font-semibold leading-9 tracking-normal text-white">
+                      <h3 className="mt-2 text-2xl font-semibold leading-7 tracking-normal text-white">
                         {activeExperience.role}
                       </h3>
                       <p className="mt-2 font-mono text-xs uppercase tracking-[0.16em] text-slate-400">
@@ -367,23 +517,23 @@ export function WorkExperienceTimeline() {
                   </div>
                 </div>
 
-                <div className="mt-8 space-y-7">
+                <div className="mt-5 min-h-0 flex-1 space-y-4 overflow-y-auto pr-2 [scrollbar-color:rgba(103,232,249,0.35)_transparent] [scrollbar-width:thin]">
                   <section>
-                    <h4 className="font-mono text-sm uppercase tracking-[0.2em] text-cyan-100">
+                    <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
                       Overview
                     </h4>
-                    <p className="mt-3 text-base leading-7 text-slate-300">
+                    <p className="mt-2 text-sm leading-6 text-slate-300">
                       {activeExperience.overview}
                     </p>
                   </section>
 
                   <section>
-                    <h4 className="font-mono text-sm uppercase tracking-[0.2em] text-cyan-100">
+                    <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
                       Key Responsibilities
                     </h4>
-                    <ul className="mt-3 space-y-2">
+                    <ul className="mt-2 space-y-1.5">
                       {activeExperience.responsibilities.map((responsibility) => (
-                        <li key={responsibility} className="flex gap-3 text-sm leading-6 text-slate-300">
+                        <li key={responsibility} className="flex gap-3 text-[13px] leading-5 text-slate-300">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,0.7)]" />
                           <span>{responsibility}</span>
                         </li>
@@ -392,14 +542,14 @@ export function WorkExperienceTimeline() {
                   </section>
 
                   <section>
-                    <h4 className="font-mono text-sm uppercase tracking-[0.2em] text-cyan-100">
+                    <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
                       Tech Stack
                     </h4>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <div className="mt-2 flex flex-wrap gap-1.5">
                       {activeExperience.techStack.map((item) => (
                         <span
                           key={item}
-                          className="border border-cyan-200/20 bg-cyan-300/8 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,0.08)]"
+                          className="border border-cyan-200/20 bg-cyan-300/8 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,0.08)]"
                         >
                           {item}
                         </span>
