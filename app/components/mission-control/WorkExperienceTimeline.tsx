@@ -160,7 +160,7 @@ export function WorkExperienceTimeline() {
         Technical Work Experience
       </h2>
 
-      <div className="mt-6 grid gap-5 lg:grid-cols-[minmax(240px,320px)_minmax(0,1fr)] lg:items-stretch">
+      <div className="mt-6 grid gap-5 lg:grid-cols-[minmax(260px,340px)_minmax(0,1fr)] lg:items-stretch">
         <div className="relative pl-7">
           <div className="absolute bottom-4 left-[7px] top-4 w-px bg-gradient-to-b from-cyan-300/0 via-cyan-300/45 to-cyan-300/0" />
           <div className="space-y-3">
@@ -206,11 +206,10 @@ export function WorkExperienceTimeline() {
         </div>
 
         <motion.article
-          key={`${activeExperience.company}-${activeExperience.date}`}
           initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="relative min-h-[520px] overflow-hidden border border-cyan-300/18 bg-slate-950/62 p-6 shadow-[0_0_55px_rgba(14,165,233,0.1)] backdrop-blur-xl"
+          className="relative min-h-[760px] overflow-hidden border border-cyan-300/18 bg-slate-950/62 p-6 shadow-[0_0_55px_rgba(14,165,233,0.1)] backdrop-blur-xl"
         >
           <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-cyan-300/80 to-transparent opacity-60" />
           <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
@@ -230,7 +229,7 @@ export function WorkExperienceTimeline() {
             </div>
           </div>
 
-          <div className="mt-7 max-h-[calc(100vh-20rem)] space-y-5 overflow-y-auto pr-2 lg:max-h-[500px]">
+          <div className="mt-7 space-y-5 pr-2">
             {activeExperience.sections.map((section, sectionIndex) => (
               <div
                 key={`${activeExperience.company}-${section.title ?? sectionIndex}`}

@@ -45,17 +45,17 @@ export function MissionControlPortfolio() {
       <section
         id="astronaut"
         aria-label="Work experience"
-        className="relative z-40 min-h-screen border-t border-cyan-300/15 bg-[#020713] px-5 py-14 md:px-8 lg:px-10"
+        className="relative z-40 min-h-[125vh] border-t border-cyan-300/15 bg-[#020713] px-5 py-20 md:px-8 lg:min-h-[135vh] lg:px-10"
       >
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.06)_1px,transparent_1px)] bg-[size:88px_88px]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_28%_46%,rgba(34,211,238,0.16)_0,transparent_32%),radial-gradient(circle_at_78%_70%,rgba(250,204,21,0.08)_0,transparent_24%)]" />
-        <div className="relative mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-8 lg:grid-cols-[minmax(260px,360px)_minmax(0,1fr)]">
+        <div className="relative mx-auto grid min-h-[calc(125vh-10rem)] max-w-7xl items-start gap-10 lg:min-h-[calc(135vh-10rem)] lg:grid-cols-[minmax(320px,460px)_minmax(0,1fr)]">
           <motion.div
             initial={{ opacity: 0, y: 34, scale: 0.96 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-auto aspect-square w-full max-w-[340px] lg:mx-0 lg:justify-self-center"
+            className="mx-auto aspect-square w-full max-w-[430px] lg:sticky lg:top-24 lg:mx-0 lg:justify-self-center"
           >
             <WavingAstronaut />
           </motion.div>
