@@ -15,11 +15,13 @@ type HeroSceneProps = {
   missionEntered: boolean;
 };
 
+const SATELLITE_ORBIT_RADIUS = 2.48;
+
 export function HeroScene({ missionEntered }: HeroSceneProps) {
   return (
-    <div className="absolute inset-0 z-0 lg:left-1/3">
+    <div className="absolute inset-0 z-0 lg:left-[31%]">
       <Canvas
-        camera={{ position: [1.35, 1.05, 7.4], fov: 42 }}
+        camera={{ position: [0.55, 0.75, 7.85], fov: 42 }}
         dpr={[1, 1.75]}
         gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
       >
@@ -39,11 +41,11 @@ export function HeroScene({ missionEntered }: HeroSceneProps) {
 function MissionCamera({ missionEntered }: HeroSceneProps) {
   useFrame(({ camera, clock }) => {
     const elapsed = clock.getElapsedTime();
-    const targetZ = missionEntered ? 6.2 : 7.4;
-    camera.position.x = 1.35 + Math.sin(elapsed * 0.08) * 0.42;
-    camera.position.y = 1.05 + Math.sin(elapsed * 0.11) * 0.12;
+    const targetZ = missionEntered ? 7.1 : 7.85;
+    camera.position.x = 0.55 + Math.sin(elapsed * 0.08) * 0.18;
+    camera.position.y = 0.75 + Math.sin(elapsed * 0.11) * 0.08;
     camera.position.z += (targetZ - camera.position.z) * 0.025;
-    camera.lookAt(1.05, 0, 0);
+    camera.lookAt(0.32, -0.08, 0);
   });
 
   return null;
@@ -127,7 +129,7 @@ function EarthSystem({ missionEntered }: HeroSceneProps) {
     if (groupRef.current) {
       groupRef.current.rotation.y = Math.sin(elapsed * 0.07) * 0.08;
       groupRef.current.rotation.x = -0.18 + Math.sin(elapsed * 0.05) * 0.035;
-      groupRef.current.position.x = missionEntered ? 0.85 : 1.15;
+      groupRef.current.position.x = missionEntered ? 0.06 : 0.42;
     }
 
     if (earthRef.current) {
@@ -140,9 +142,9 @@ function EarthSystem({ missionEntered }: HeroSceneProps) {
   });
 
   return (
-    <group ref={groupRef} position={[1.15, -0.08, 0]}>
+    <group ref={groupRef} position={[0.42, -0.08, 0]}>
       <mesh ref={earthRef}>
-        <sphereGeometry args={[1.92, 96, 96]} />
+        <sphereGeometry args={[1.9, 96, 96]} />
         <meshStandardMaterial
           map={earthTexture}
           roughness={0.82}
@@ -152,7 +154,7 @@ function EarthSystem({ missionEntered }: HeroSceneProps) {
         />
       </mesh>
       <mesh ref={cloudRef}>
-        <sphereGeometry args={[1.955, 96, 96]} />
+        <sphereGeometry args={[1.94, 96, 96]} />
         <meshStandardMaterial
           map={cloudTexture}
           transparent
@@ -195,8 +197,8 @@ function OrbitingSatellite({
       const angle = (i / 180) * Math.PI * 2;
       const index = i * 3;
 
-      result[index] = Math.cos(angle) * 2.75;
-      result[index + 1] = Math.sin(angle) * 2.75;
+      result[index] = Math.cos(angle) * SATELLITE_ORBIT_RADIUS;
+      result[index + 1] = Math.sin(angle) * SATELLITE_ORBIT_RADIUS;
       result[index + 2] = 0;
     }
 
@@ -219,9 +221,13 @@ function OrbitingSatellite({
     }
 
     if (satelliteRef.current) {
-      satelliteRef.current.position.set(Math.cos(angle) * 2.75, Math.sin(angle) * 2.75, 0);
+      satelliteRef.current.position.set(
+        Math.cos(angle) * SATELLITE_ORBIT_RADIUS,
+        Math.sin(angle) * SATELLITE_ORBIT_RADIUS,
+        0,
+      );
       satelliteRef.current.rotation.set(0.4, -angle, 0.2);
-      const scale = orbitHot ? 1.16 : 1;
+      const scale = orbitHot ? 1.02 : 0.88;
       scaleTarget.set(scale, scale, scale);
       satelliteRef.current.scale.lerp(scaleTarget, 0.12);
     }

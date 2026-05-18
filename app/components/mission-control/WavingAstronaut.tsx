@@ -153,8 +153,10 @@ export function WavingAstronaut() {
           fill="#050816"
           opacity="0.98"
         />
-        <path d="M181 154c8 5 17 5 25 0" stroke="#422006" strokeLinecap="round" strokeWidth="3" />
-        <path d="M223 154c8 5 17 5 25 0" stroke="#422006" strokeLinecap="round" strokeWidth="3" />
+        <ellipse cx="193" cy="156" fill="#111827" rx="9" ry="12" />
+        <ellipse cx="235" cy="156" fill="#111827" rx="9" ry="12" />
+        <ellipse cx="197" cy="150" fill="#fff7ed" rx="3.5" ry="5" transform="rotate(38 197 150)" />
+        <ellipse cx="239" cy="150" fill="#fff7ed" rx="3.5" ry="5" transform="rotate(38 239 150)" />
         <path d="M204 178c13 9 28 9 42 0" stroke="#7f1d1d" strokeLinecap="round" strokeWidth="4" />
         <path
           d="M165 90c25-31 71-35 102-8"

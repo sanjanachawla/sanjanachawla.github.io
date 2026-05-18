@@ -8,38 +8,120 @@ import { WorkExperienceTimeline } from "./WorkExperienceTimeline";
 
 export function MissionControlPortfolio() {
   const { scrollYProgress } = useScroll();
-  const layerOpacity = useTransform(scrollYProgress, [0, 0.28, 0.48], [0.15, 0.65, 1]);
+  const layerOpacity = useTransform(scrollYProgress, [0, 0.28, 0.48], [0.12, 0.5, 0.85]);
   const gridY = useTransform(scrollYProgress, [0, 1], [0, -120]);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#02050c] text-slate-100">
-      <section className="relative grid min-h-screen overflow-hidden lg:grid-cols-[1fr_2fr]">
+      <section id="home" className="relative min-h-screen overflow-hidden bg-[#02050c]">
         <HeroScene missionEntered={false} />
         <motion.div
-          className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(rgba(56,189,248,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.08)_1px,transparent_1px)] bg-[size:72px_72px]"
+          className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(rgba(56,189,248,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.045)_1px,transparent_1px)] bg-[size:88px_88px]"
           style={{ opacity: layerOpacity, y: gridY }}
         />
-        <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_67%_50%,transparent_0,rgba(2,5,12,0.05)_34%,rgba(2,5,12,0.88)_100%)]" />
-        <div className="relative z-30 flex min-h-screen items-center justify-center border-cyan-300/15 bg-[#02050c]/72 backdrop-blur-sm lg:border-r">
-          <div className="flex w-full justify-center px-5 py-6 md:px-8 md:py-8 lg:px-10">
-            <motion.div
-              initial={{ opacity: 0, y: 32 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-40 flex w-full max-w-2xl flex-col"
-            >
-              <h1 className="max-w-2xl text-4xl font-semibold leading-[0.95] tracking-normal text-white sm:text-5xl lg:text-6xl">
-                Sanjana&apos;s Portfolio
-              </h1>
-              <p className="mt-7 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-                Hi! I am Sanjana, I am working in Aerospace Software and R&D at MDA Space. Come take a space walk through my projects with me. 
-              </p>
-              <div className="mt-9 flex flex-wrap items-center gap-4">
+        <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_86%_8%,rgba(191,219,254,0.34)_0,rgba(56,189,248,0.08)_16%,transparent_34%),radial-gradient(circle_at_70%_48%,transparent_0,rgba(2,5,12,0.18)_42%,rgba(2,5,12,0.88)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(90deg,rgba(2,5,12,0.98)_0%,rgba(2,5,12,0.9)_34%,rgba(2,5,12,0.48)_58%,rgba(2,5,12,0.06)_100%)]" />
+
+        <header className="absolute left-0 right-0 top-0 z-40 hidden justify-center px-6 py-7 md:flex lg:px-14">
+          <nav
+            aria-label="Primary navigation"
+            className="flex items-center gap-8 font-mono text-[11px] uppercase tracking-[0.28em] text-slate-300 lg:gap-12"
+          >
+            <a className="border-b border-cyan-300 pb-1 text-white" href="#home">
+              Home
+            </a>
+            <a className="transition hover:text-cyan-100" href="#astronaut">
+              Experience
+            </a>
+            <a className="transition hover:text-cyan-100" href="#projects">
+              Projects
+            </a>
+            <a className="transition hover:text-cyan-100" href="mailto:sanjanachawla99@gmail.com">
+              Contact
+            </a>
+          </nav>
+        </header>
+
+        <div className="relative z-30 flex min-h-screen items-center px-6 pb-20 pt-28 md:px-10 lg:px-[8vw] lg:pb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-[39rem]"
+          >
+            <h1 className="max-w-[35rem] text-5xl font-light leading-[0.94] tracking-[0.02em] text-white sm:text-6xl lg:text-7xl">
+              Sanjana&apos;s Portfolio
+            </h1>
+            <p className="mt-7 max-w-[36rem] text-lg leading-9 text-slate-300 sm:text-xl sm:leading-10">
+              Hi! I am Sanjana, I am working in Aerospace Software and R&D at MDA Space. Come take a space walk through my projects with me.
+            </p>
+
+            <div className="mt-9 max-w-[38rem]">
+              <table className="w-full border-collapse border-y border-cyan-300/25 bg-[#061832]/36 text-left backdrop-blur-sm">
+                <tbody>
+                  <tr className="border-b border-cyan-300/14">
+                    <th className="w-32 px-4 py-4 align-top font-mono text-[11px] uppercase tracking-[0.24em] text-cyan-200/75 sm:w-40 sm:text-xs">
+                      Education
+                    </th>
+                    <td className="px-4 py-4 text-base leading-7 text-slate-100 sm:text-lg">
+                      <span className="block">Bachelor of Applied Science in</span>
+                      <span className="block">
+                        <strong className="font-semibold text-yellow-300">Engineering Physics</strong> at UBC
+                      </span>
+                    </td>
+                  </tr>
+                  <tr className="border-b border-cyan-300/14">
+                    <th className="w-32 px-4 py-4 align-top font-mono text-[11px] uppercase tracking-[0.24em] text-cyan-200/75 sm:w-40 sm:text-xs">
+                      Working at
+                    </th>
+                    <td className="px-4 py-4 text-base leading-7 text-slate-100 sm:text-lg">
+                      MDA Space
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="w-32 px-4 py-4 align-top font-mono text-[11px] uppercase tracking-[0.24em] text-cyan-200/75 sm:w-40 sm:text-xs">
+                      Location
+                    </th>
+                    <td className="px-4 py-4 text-base leading-7 text-slate-100 sm:text-lg">
+                      Vancouver, BC, Canada
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div className="mt-6">
+                <div className="font-mono text-sm uppercase tracking-[0.28em] text-cyan-200/80">
+                  Contact:
+                </div>
+                <div className="mt-3 flex flex-wrap items-center gap-x-7 gap-y-3 text-lg text-slate-300 sm:text-xl">
+                  <a
+                    className="text-cyan-100 underline decoration-cyan-300/35 underline-offset-4 transition hover:text-white"
+                    href="mailto:sanjanachawla99@gmail.com"
+                  >
+                    sanjanachawla99@gmail.com
+                  </a>
+                  <a
+                    className="text-cyan-100 underline decoration-cyan-300/35 underline-offset-4 transition hover:text-white"
+                    href="https://github.com/sanjanachawla"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    className="text-cyan-100 underline decoration-cyan-300/35 underline-offset-4 transition hover:text-white"
+                    href="https://www.linkedin.com/in/sanjana-chawla/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
-        <div className="pointer-events-none relative z-30 hidden min-h-screen lg:block" />
+
       </section>
 
       <section

@@ -81,7 +81,7 @@ export const projects: Project[] = [
     signal: "SOL",
     image: "/mission-control/projects/solar.jpg",
     imageAlt: "UBC Solar project preview",
-    href: "https://sites.google.com/view/portfoliosanjanachawla/ubc-solar?authuser=0",
+    href: "/old-portfolio/ubc-solar.html",
   },
   {
     id: "machine-learning-robot",
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     signal: "ML",
     image: "/mission-control/projects/mlrobot.jpg",
     imageAlt: "Machine Learning Robot project preview",
-    href: "https://sites.google.com/view/portfoliosanjanachawla/machine-learning-robot?authuser=0",
+    href: "/old-portfolio/machine-learning-robot.html",
   },
   {
     id: "robot-summer",
@@ -105,6 +105,6 @@ export const projects: Project[] = [
     signal: "BOT",
     image: "/mission-control/projects/robotsummer.jpg",
     imageAlt: "Robot Summer project preview",
-    href: "https://sites.google.com/view/portfoliosanjanachawla/autonomous-robot?authuser=0",
+    href: "/old-portfolio/autonomous-robot.html",
   },
 ];

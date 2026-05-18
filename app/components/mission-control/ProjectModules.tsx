@@ -9,16 +9,12 @@ export function ProjectModules() {
     <div className="mx-auto max-w-7xl">
       <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="font-mono text-xs uppercase tracking-[0.32em] text-cyan-200">
-            Mission Modules
-          </div>
-          <h2 className="mt-4 text-4xl font-semibold tracking-normal text-white md:text-6xl">
-            Selected systems work
+          <h2 className="text-4xl font-semibold tracking-normal text-white md:text-6xl">
+            Projects
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-6 text-slate-400 md:text-right">
-          Project work from the earlier portfolio, translated into mission modules across
-          robotics, embedded systems, data platforms, simulation, and product design.
+          Personal projects I&apos;ve worked on throughout the years.
         </p>
       </div>
 
@@ -46,17 +42,11 @@ export function ProjectModules() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/12 to-cyan-300/8" />
               <div className="absolute inset-x-0 bottom-0 h-px bg-cyan-200/40 shadow-[0_0_18px_rgba(103,232,249,0.55)]" />
             </div>
-            <div className="mb-8 flex items-start justify-between gap-4">
-              <div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-slate-500">
-                  {project.classification}
-                </div>
-                <h3 className="mt-3 text-2xl font-semibold tracking-normal text-white">{project.title}</h3>
+            <div className="mb-8">
+              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-slate-500">
+                {project.classification}
               </div>
-              <div className="border border-emerald-300/20 bg-emerald-300/8 px-3 py-2 text-right font-mono">
-                <div className="text-[9px] uppercase tracking-[0.18em] text-emerald-200/70">Signal</div>
-                <div className="text-lg text-emerald-100">{project.signal}</div>
-              </div>
+              <h3 className="mt-3 text-2xl font-semibold tracking-normal text-white">{project.title}</h3>
             </div>
             <p className="flex-1 text-sm leading-6 text-slate-300">{project.summary}</p>
             <div className="mt-8 flex flex-wrap gap-2">
