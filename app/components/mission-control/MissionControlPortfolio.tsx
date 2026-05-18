@@ -19,8 +19,8 @@ export function MissionControlPortfolio() {
           className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(rgba(56,189,248,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.045)_1px,transparent_1px)] bg-[size:88px_88px]"
           style={{ opacity: layerOpacity, y: gridY }}
         />
-        <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_74%_16%,rgba(191,219,254,0.3)_0,rgba(56,189,248,0.08)_18%,transparent_38%),radial-gradient(circle_at_58%_36%,transparent_0,rgba(2,5,12,0.08)_42%,rgba(2,5,12,0.72)_100%)] md:bg-[radial-gradient(circle_at_86%_8%,rgba(191,219,254,0.34)_0,rgba(56,189,248,0.08)_16%,transparent_34%),radial-gradient(circle_at_70%_48%,transparent_0,rgba(2,5,12,0.18)_42%,rgba(2,5,12,0.88)_100%)]" />
-        <div className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(180deg,rgba(2,5,12,0.18)_0%,rgba(2,5,12,0.5)_42%,rgba(2,5,12,0.96)_100%)] md:bg-[linear-gradient(90deg,rgba(2,5,12,0.98)_0%,rgba(2,5,12,0.9)_34%,rgba(2,5,12,0.48)_58%,rgba(2,5,12,0.06)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(circle_at_86%_8%,rgba(191,219,254,0.34)_0,rgba(56,189,248,0.08)_16%,transparent_34%),radial-gradient(circle_at_70%_48%,transparent_0,rgba(2,5,12,0.18)_42%,rgba(2,5,12,0.88)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(90deg,rgba(2,5,12,0.98)_0%,rgba(2,5,12,0.9)_34%,rgba(2,5,12,0.48)_58%,rgba(2,5,12,0.06)_100%)]" />
 
         <header className="absolute left-0 right-0 top-0 z-40 hidden justify-center px-6 py-7 md:flex lg:px-14">
           <nav
@@ -42,7 +42,7 @@ export function MissionControlPortfolio() {
           </nav>
         </header>
 
-        <div className="relative z-30 flex min-h-[100svh] items-start px-6 pb-20 pt-[20.5rem] sm:pt-[22rem] md:min-h-screen md:items-center md:px-10 md:pt-28 lg:px-[8vw] lg:pb-24">
+        <div className="relative z-30 flex min-h-screen items-center px-6 pb-20 pt-28 md:px-10 lg:px-[8vw] lg:pb-24">
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}

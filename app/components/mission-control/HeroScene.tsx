@@ -15,30 +15,12 @@ type HeroSceneProps = {
   missionEntered: boolean;
 };
 
-type SceneSystemProps = HeroSceneProps & {
-  isCompact: boolean;
-};
-
 const SATELLITE_ORBIT_RADIUS = 2.48;
 const SATELLITE_ORBIT_VERTICAL_OFFSET = -0.68;
 
 export function HeroScene({ missionEntered }: HeroSceneProps) {
-  const [isCompact, setIsCompact] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
-    const updateCompactMode = () => setIsCompact(mediaQuery.matches);
-
-    updateCompactMode();
-    mediaQuery.addEventListener("change", updateCompactMode);
-
-    return () => {
-      mediaQuery.removeEventListener("change", updateCompactMode);
-    };
-  }, []);
-
   return (
-    <div className="absolute inset-x-0 top-0 z-0 h-[21.5rem] sm:h-[23rem] md:inset-0 md:h-auto lg:left-[31%]">
+    <div className="absolute inset-0 z-0 lg:left-[31%]">
       <Canvas
         camera={{ position: [0.55, 0.75, 7.85], fov: 42 }}
         dpr={[1, 1.75]}
@@ -50,26 +32,21 @@ export function HeroScene({ missionEntered }: HeroSceneProps) {
         <directionalLight position={[4, 2.5, 4]} intensity={3.65} color="#d9f7ff" />
         <pointLight position={[-4, -2, 3]} intensity={1.35} color="#0ea5e9" />
         <StarField radius={80} depth={50} count={2400} speed={0.35} />
-        <MissionCamera isCompact={isCompact} missionEntered={missionEntered} />
-        <EarthSystem isCompact={isCompact} missionEntered={missionEntered} />
+        <MissionCamera missionEntered={missionEntered} />
+        <EarthSystem missionEntered={missionEntered} />
       </Canvas>
     </div>
   );
 }
 
-function MissionCamera({ isCompact, missionEntered }: SceneSystemProps) {
+function MissionCamera({ missionEntered }: HeroSceneProps) {
   useFrame(({ camera, clock }) => {
     const elapsed = clock.getElapsedTime();
-    const targetZ = isCompact ? 9.25 : missionEntered ? 7.1 : 7.85;
-    const baseX = isCompact ? 0 : 0.55;
-    const baseY = isCompact ? 0.5 : 0.75;
-    const lookAtX = isCompact ? 0.02 : 0.32;
-    const lookAtY = isCompact ? 0.08 : -0.08;
-
-    camera.position.x = baseX + Math.sin(elapsed * 0.08) * (isCompact ? 0.08 : 0.18);
-    camera.position.y = baseY + Math.sin(elapsed * 0.11) * (isCompact ? 0.05 : 0.08);
+    const targetZ = missionEntered ? 7.1 : 7.85;
+    camera.position.x = 0.55 + Math.sin(elapsed * 0.08) * 0.18;
+    camera.position.y = 0.75 + Math.sin(elapsed * 0.11) * 0.08;
     camera.position.z += (targetZ - camera.position.z) * 0.025;
-    camera.lookAt(lookAtX, lookAtY, 0);
+    camera.lookAt(0.32, -0.08, 0);
   });
 
   return null;
@@ -132,7 +109,7 @@ function seededRandom(seed: number) {
   return value - Math.floor(value);
 }
 
-function EarthSystem({ isCompact, missionEntered }: SceneSystemProps) {
+function EarthSystem({ missionEntered }: HeroSceneProps) {
   const groupRef = useRef<Group>(null);
   const earthRef = useRef<Mesh>(null);
   const cloudRef = useRef<Mesh>(null);
@@ -153,9 +130,7 @@ function EarthSystem({ isCompact, missionEntered }: SceneSystemProps) {
     if (groupRef.current) {
       groupRef.current.rotation.y = Math.sin(elapsed * 0.07) * 0.08;
       groupRef.current.rotation.x = -0.18 + Math.sin(elapsed * 0.05) * 0.035;
-      groupRef.current.position.x = isCompact ? 0 : missionEntered ? 0.06 : 0.42;
-      groupRef.current.position.y = isCompact ? 0.08 : -0.08;
-      groupRef.current.scale.setScalar(isCompact ? 0.88 : 1);
+      groupRef.current.position.x = missionEntered ? 0.06 : 0.42;
     }
 
     if (earthRef.current) {
