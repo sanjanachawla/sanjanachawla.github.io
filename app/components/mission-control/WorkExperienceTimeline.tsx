@@ -331,7 +331,72 @@ export function WorkExperienceTimeline() {
         Technical Work Experience
       </h2>
 
-      <div className="relative mt-4 grid gap-5 xl:grid-cols-[minmax(420px,450px)_minmax(540px,1fr)] xl:items-stretch">
+      <div className="relative mt-5 space-y-3 xl:hidden">
+        {experiences.map((experience, index) => {
+          const isActive = index === activeIndex;
+
+          return (
+            <div
+              key={experience.id}
+              className={`border backdrop-blur-xl transition duration-300 ${
+                isActive
+                  ? "border-cyan-100/75 bg-[#0d2b4c]/90 shadow-[0_0_36px_rgba(34,211,238,0.2)]"
+                  : "border-cyan-200/24 bg-[#08213f]/72"
+              }`}
+              onPointerDown={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                aria-controls={`${experience.id}-mobile-details`}
+                aria-expanded={isActive}
+                className="group w-full p-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/50"
+                onClick={() => setActiveIndex(isActive ? null : index)}
+              >
+                <span className="block font-mono text-xs uppercase tracking-[0.16em] text-emerald-100/80">
+                  {experience.date}
+                </span>
+                <span className="mt-2 block break-words text-xl font-semibold leading-6 text-white">
+                  {experience.role}
+                </span>
+                <span className="mt-2 block break-words font-mono text-xs uppercase tracking-[0.14em] text-cyan-200/80">
+                  {experience.company}
+                </span>
+                <span className="mt-3 block text-sm leading-5 text-slate-300">
+                  {experience.overview}
+                </span>
+                <span className="mt-4 flex items-center justify-between border-t border-cyan-200/14 pt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan-100">
+                  <span>{isActive ? "Details open" : "View details"}</span>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-7 w-7 items-center justify-center border border-cyan-200/35 bg-cyan-300/8 text-base leading-none text-cyan-50 transition group-hover:border-cyan-100/70"
+                  >
+                    {isActive ? "-" : "+"}
+                  </span>
+                </span>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {isActive ? (
+                  <motion.div
+                    id={`${experience.id}-mobile-details`}
+                    animate={{ height: "auto", opacity: 1 }}
+                    className="overflow-hidden"
+                    exit={{ height: 0, opacity: 0 }}
+                    initial={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="border-t border-cyan-200/18 p-4 pt-5">
+                      <ExperienceDetailContent experience={experience} />
+                    </div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="relative mt-4 hidden gap-5 xl:grid xl:grid-cols-[minmax(420px,450px)_minmax(540px,1fr)] xl:items-stretch">
         <motion.div
           className="relative h-[clamp(540px,calc(100vh-10rem),620px)] min-h-0 overflow-visible bg-[radial-gradient(circle_at_46%_50%,rgba(14,116,144,0.18),transparent_58%)]"
           style={{ x: orbitX, y: orbitY }}
@@ -397,7 +462,7 @@ export function WorkExperienceTimeline() {
                 <motion.button
                   type="button"
                   aria-pressed={isActive}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => setActiveIndex(isActive ? null : index)}
                   onPointerDown={(event) => event.stopPropagation()}
                   whileHover={{ y: -7, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -497,94 +562,106 @@ export function WorkExperienceTimeline() {
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200 to-transparent opacity-70" />
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(34,211,238,0.16),transparent_28%)]" />
-              <motion.div
-                animate={{ opacity: 1, x: 0 }}
-                className="relative z-10 flex h-full flex-col"
-                exit={{ opacity: 0, x: -18 }}
-                initial={{ opacity: 0, x: 18 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-cyan-100/55 bg-cyan-200/12 font-mono text-base font-semibold uppercase tracking-[0.08em] text-cyan-50 shadow-[0_0_30px_rgba(34,211,238,0.2)]">
-                      {activeExperience.logo}
-                    </div>
-                    <div>
-                      <div className="font-mono text-xs uppercase tracking-[0.24em] text-cyan-200/80">
-                        Mission Detail Panel
-                      </div>
-                      <h3 className="mt-2 text-2xl font-semibold leading-7 tracking-normal text-white">
-                        {activeExperience.role}
-                      </h3>
-                      <p className="mt-2 font-mono text-xs uppercase tracking-[0.16em] text-slate-400">
-                        {activeExperience.company} / {activeExperience.date}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5 min-h-0 flex-1 space-y-4 overflow-y-auto pr-2 [scrollbar-color:rgba(103,232,249,0.35)_transparent] [scrollbar-width:thin]">
-                  <section>
-                    <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
-                      Overview
-                    </h4>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">
-                      {activeExperience.overview}
-                    </p>
-                  </section>
-
-                  <section>
-                    <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
-                      Key Responsibilities
-                    </h4>
-                    <ul className="mt-2 space-y-1.5">
-                      {activeExperience.responsibilities.map((responsibility) => {
-                        const isHeading = responsibilityHeadings.has(responsibility);
-
-                        return (
-                          <li
-                            key={responsibility}
-                            className={
-                              isHeading
-                                ? "pt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan-100"
-                                : "flex gap-3 text-[13px] leading-5 text-slate-300"
-                            }
-                          >
-                            {isHeading ? (
-                              responsibility
-                            ) : (
-                              <>
-                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,0.7)]" />
-                                <span>{responsibility}</span>
-                              </>
-                            )}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </section>
-
-                  <section>
-                    <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
-                      Tech Stack
-                    </h4>
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {activeExperience.techStack.map((item) => (
-                        <span
-                          key={item}
-                          className="border border-cyan-200/20 bg-cyan-300/8 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,0.08)]"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </section>
-                </div>
-              </motion.div>
+              <ExperienceDetailContent experience={activeExperience} scrollable />
             </motion.article>
           ) : null}
         </AnimatePresence>
       </div>
     </motion.div>
+  );
+}
+
+function ExperienceDetailContent({
+  experience,
+  scrollable = false,
+}: {
+  experience: Experience;
+  scrollable?: boolean;
+}) {
+  return (
+    <div className="relative z-10 flex h-full flex-col">
+      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div className="flex items-start gap-4">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-cyan-100/55 bg-cyan-200/12 font-mono text-base font-semibold uppercase tracking-[0.08em] text-cyan-50 shadow-[0_0_30px_rgba(34,211,238,0.2)]">
+            {experience.logo}
+          </div>
+          <div className="min-w-0">
+            <div className="font-mono text-xs uppercase tracking-[0.24em] text-cyan-200/80">
+              Mission Detail Panel
+            </div>
+            <h3 className="mt-2 break-words text-2xl font-semibold leading-7 tracking-normal text-white">
+              {experience.role}
+            </h3>
+            <p className="mt-2 break-words font-mono text-xs uppercase tracking-[0.16em] text-slate-400">
+              {experience.company} / {experience.date}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`mt-5 space-y-4 ${
+          scrollable
+            ? "min-h-0 flex-1 overflow-y-auto pr-2 [scrollbar-color:rgba(103,232,249,0.35)_transparent] [scrollbar-width:thin]"
+            : ""
+        }`}
+      >
+        <section>
+          <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
+            Overview
+          </h4>
+          <p className="mt-2 text-sm leading-6 text-slate-300">
+            {experience.overview}
+          </p>
+        </section>
+
+        <section>
+          <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
+            Key Responsibilities
+          </h4>
+          <ul className="mt-2 space-y-1.5">
+            {experience.responsibilities.map((responsibility) => {
+              const isHeading = responsibilityHeadings.has(responsibility);
+
+              return (
+                <li
+                  key={responsibility}
+                  className={
+                    isHeading
+                      ? "pt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan-100"
+                      : "flex gap-3 text-[13px] leading-5 text-slate-300"
+                  }
+                >
+                  {isHeading ? (
+                    responsibility
+                  ) : (
+                    <>
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,0.7)]" />
+                      <span>{responsibility}</span>
+                    </>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        <section>
+          <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-100">
+            Tech Stack
+          </h4>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {experience.techStack.map((item) => (
+              <span
+                key={item}
+                className="border border-cyan-200/20 bg-cyan-300/8 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,0.08)]"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
   );
 }
