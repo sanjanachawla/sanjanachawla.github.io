@@ -608,10 +608,7 @@ function ExperienceDetailContent({
             {experience.logo}
           </div>
           <div className="min-w-0">
-            <div className="font-mono text-xs uppercase tracking-[0.24em] text-cyan-200/80">
-              Mission Detail Panel
-            </div>
-            <h3 className="mt-2 break-words text-2xl font-semibold leading-7 tracking-normal text-white">
+            <h3 className="break-words text-2xl font-semibold leading-7 tracking-normal text-white">
               {experience.role}
             </h3>
             <p className="mt-2 break-words font-mono text-xs uppercase tracking-[0.16em] text-slate-400">
