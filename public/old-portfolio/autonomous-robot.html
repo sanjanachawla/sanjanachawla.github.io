@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Autonomous Robot - Sanjana's Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/mission-control.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  </head>
+  <body class="is-preload google-site-page">
+    <div id="wrapper">
+      <header id="header">
+        <div class="inner">
+          <a href="/" class="logo"><span class="title">Sanjana Chawla</span></a>
+          <nav>
+            <ul>
+              <li><a href="/" class="home-return">Home</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div id="main">
+        <div class="inner">
+          <header class="google-site-hero">
+            <h1>Autonomous Robot</h1>
+            <p>Legacy Google Sites project page preserved as a local portfolio page.</p>
+            <p class="google-site-source"><a href="https://sites.google.com/view/portfoliosanjanachawla/autonomous-robot" target="_blank" rel="noreferrer">Original Google Sites page</a></p>
+          </header>
+          <article class="google-site-copy">
+<h2>Introducing: Redwing, Our completely autonomous robot.</h2>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-01.png" alt="Autonomous Robot image 1" loading="lazy"></figure>
+<h2>Overview</h2>
+<p>In the summer of 2019, I worked in a team of three to build an autonomous robot able to navigate an obstacle course and pick up objects, to take part in the ENPH 253 robot competition. I built the entire electrical system for the robot, while the other two in my team focused on the mechanical design, and the software. We used a Bluepill micro-controller for this project. The circuits I constructed were</p>
+<ul class="google-site-list">
+<li>QRD sensor inputs</li>
+<li>H-bridge motor drivers</li>
+<li>IR sensor</li>
+<li>a rotary encoder with a de-bouncing filter</li>
+</ul>
+<p>A selection of the circuits are shown below:</p>
+<h2>QRD Sensors</h2>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-02.png" alt="Autonomous Robot image 2" loading="lazy"></figure>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-03.png" alt="Autonomous Robot image 3" loading="lazy"></figure>
+<p>To navigate the course, the robot was made to follow a black tape by sensing the black line by using QRD&#x27;s. The Bluepill&#x27;s inputs only take up to 3.3 volts, and so, we used a zener diode to protect the ports from the 5V source. The potentiometer adjusts the sensitivity and range the QRD can sense to.</p>
+<p>In the image to the left, the JST connectors lead to the QRD&#x27;s. In this circuit, we connected three QRD&#x27;s in parallel, for the best optimization of space.</p>
+<h2>H-Bridges</h2>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-04.png" alt="Autonomous Robot image 4" loading="lazy"></figure>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-05.png" alt="Autonomous Robot image 5" loading="lazy"></figure>
+<p>This circuit was connected to each motor to ensure that the motor was able to rotate in both directions from the output of the bluepill.</p>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-06.png" alt="Autonomous Robot image 6" loading="lazy"></figure>
+<h2>IR detection circuit</h2>
+<p>This image features the schematic of the IR detection circuit, which would detect soft objects placed randomly on the ground. The circuit was build, debugged, and verified, but we did not implement it on our robot because we decided to focus on QRD detection instead.</p>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-07.png" alt="Autonomous Robot image 7" loading="lazy"></figure>
+<h2>Bluepill and QRD circuits</h2>
+<p>This image features the underside of the robot, where we placed the QRD circuits and the BluePill to optimize space.</p>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-08.png" alt="Autonomous Robot image 8" loading="lazy"></figure>
+<h2>H-Bridge on robot</h2>
+<p>This image features the top shell of the robot, including where we placed the H-Bridge, multiplexer, and other motor drivers.</p>
+<figure class="google-site-image"><img src="images/google-sites/autonomous-robot/autonomous-robot-09.png" alt="Autonomous Robot image 9" loading="lazy"></figure>
+          </article>
+          <ul class="actions google-site-actions">
+            <li><a href="/#projects" class="button primary">Back to Projects</a></li>
+            <li><a href="/" class="button">Home</a></li>
+          </ul>
+        </div>
+      </div>
+      <footer id="footer">
+        <div class="inner">
+          <p class="copyright">&copy; Sanjana Chawla.</p>
+        </div>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

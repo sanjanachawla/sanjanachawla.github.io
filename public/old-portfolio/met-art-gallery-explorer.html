@@ -1,0 +1,214 @@
+﻿<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MET Art Gallery Explorer - Sanjana Chawla</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/mission-control.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+
+			<header id="header">
+				<div class="inner">
+					<a href="/" class="logo">
+						<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Sanjana Chawla</span>
+					</a>
+					<nav>
+						<ul>
+							<li><a href="/" class="home-return">Home</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+
+			<nav id="menu">
+				<h2>Menu</h2>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="newventure.html">New Venture Design</a></li>
+					<li><a href="pottery.html">Simulating Pottery</a></li>
+					<li><a href="davinci.html">DaVinci</a></li>
+					<li><a href="coop1.html">Co-op 1</a></li>
+					<li><a href="coop2.html">Co-op 2</a></li>
+					<li><a href="star-dancing-painting.html">Star-Dancing Painting</a></li>
+					<li><a href="met-art-gallery-explorer.html">MET Art Gallery Explorer</a></li>
+				</ul>
+			</nav>
+
+			<div id="main">
+				<div class="inner project-page-centered">
+					<header>
+						<h1>MET Art Gallery Explorer</h1>
+						<p class="major">An interactive museum dashboard for exploring artworks from the Metropolitan Museum of Art through a FastAPI backend, MySQL database, and Streamlit frontend. This project demonstrates the integration of modern web technologies to create a seamless user experience for exploring art collections.
+							I used RestAPI's to first connect to the METs public collection, then built a FastAPI backend to serve the data, and finally created a Streamlit dashboard to visualize and explore the artworks. The project is containerized with Docker and structured for deployment on AWS.</p>
+						<p class="major">The MET Art Gallery Explorer allows users to filter artworks by artist and century, view metadata and images, and visualize trends in the collection. It showcases full-stack software engineering skills across backend development, database design, data visualization, and cloud deployment.</p>
+						</p>
+					</header>
+
+					<section>
+						<h2>Overview</h2>
+						<p>This project turns the MET Museum's public collection into a browsable web experience. It combines a Streamlit dashboard, a FastAPI service layer, and a MySQL database so users can filter artworks, inspect metadata, and visualize patterns in the collection.</p>
+						<ul class="actions">
+							<li><a href="https://met-art-gallery.com/" class="button primary">Visit the Live Site</a></li>
+							<li><a href="https://www.metmuseum.org/" class="button">The MET Museum</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Live Preview</h2>
+						<p>This embedded preview attempts to load the live project directly into the page. If the app blocks embedding, use the live site link above to open it in a separate tab.</p>
+						<div class="site-preview-frame">
+							<iframe src="https://met-art-gallery.com/" title="MET Art Gallery Explorer live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+						</div>
+					</section>
+
+					<section>
+						<h2>Key Features</h2>
+						<div class="features">
+							<article>
+								<span class="icon solid fa-chart-bar"></span>
+								<div class="content">
+									<h3>Interactive Dashboard</h3>
+									<p>Built in Streamlit with filtering, charts, and a gallery view for exploring a curated artwork dataset.</p>
+								</div>
+							</article>
+							<article>
+								<span class="icon solid fa-search"></span>
+								<div class="content">
+									<h3>Artwork Discovery</h3>
+									<p>Browse artworks by artist, century, department, title, and image, with details surfaced through a clean API response.</p>
+								</div>
+							</article>
+							<article>
+								<span class="icon solid fa-bolt"></span>
+								<div class="content">
+									<h3>FastAPI Backend</h3>
+									<p>A lightweight REST API provides health checks and artwork retrieval endpoints for the frontend.</p>
+								</div>
+							</article>
+							<article>
+								<span class="icon solid fa-database"></span>
+								<div class="content">
+									<h3>Persistent Data Model</h3>
+									<p>MySQL stores artists and artworks in a structured schema that supports joins and scalable querying.</p>
+								</div>
+							</article>
+							<article>
+								<span class="icon solid fa-chart-line"></span>
+								<div class="content">
+									<h3>Data Visualization</h3>
+									<p>Plotly charts make it easier to spot trends across time periods, artists, and departments.</p>
+								</div>
+							</article>
+							<article>
+								<span class="icon solid fa-cloud"></span>
+								<div class="content">
+									<h3>Deployment Ready</h3>
+									<p>The project is containerized and structured for AWS deployment using ECS, EC2, and RDS.</p>
+								</div>
+							</article>
+						</div>
+					</section>
+
+					<section>
+						<h2>Architecture</h2>
+						<p>The application follows a simple service-oriented structure with clear boundaries between storage, API, and user interface.</p>
+						<div class="box">
+							<p><strong>Dashboard (Streamlit)</strong> sends HTTP requests to <strong>API (FastAPI)</strong>, which runs SQL queries against <strong>MySQL</strong> and returns JSON back to the dashboard.</p>
+						</div>
+						<div class="features">
+							<article>
+								<span class="icon solid fa-server"></span>
+								<div class="content">
+									<h3>Database</h3>
+									<p>MySQL stores artist records and artwork metadata including title, year, century, department, and image URL.</p>
+								</div>
+							</article>
+							<article>
+								<span class="icon solid fa-code"></span>
+								<div class="content">
+									<h3>API</h3>
+									<p>FastAPI exposes endpoints like <code>GET /health</code> and <code>GET /artworks</code> for lightweight data access.</p>
+								</div>
+							</article>
+							<article>
+								<span class="icon solid fa-desktop"></span>
+								<div class="content">
+									<h3>Dashboard</h3>
+									<p>Streamlit presents filters, charts, and a gallery interface for browsing the returned collection.</p>
+								</div>
+							</article>
+						</div>
+					</section>
+
+					<section>
+						<h2>Tech Stack</h2>
+						<p>Python 3.8+, FastAPI, Streamlit, MySQL, Docker, Docker Compose, Plotly, and AWS infrastructure tooling.</p>
+					</section>
+
+					<section>
+						<h2>Local Setup</h2>
+						<ol>
+							<li>Clone the repository and create a Python virtual environment.</li>
+							<li>Install dependencies from <code>requirements.txt</code>.</li>
+							<li>Create a MySQL database named <code>met_art</code>.</li>
+							<li>Set database environment variables such as <code>DB_HOST</code>, <code>DB_USER</code>, <code>DB_PASSWORD</code>, <code>DB_NAME</code>, and <code>DB_PORT</code>.</li>
+							<li>Initialize the database with <code>python scripts/bootstrap_db.py</code>.</li>
+							<li>Start the API with <code>API_PORT=8001 python scripts/start_api.py</code>.</li>
+							<li>Launch the dashboard with <code>streamlit run dashboard/dashboard.py</code>.</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Usage</h2>
+						<p>Once running, the dashboard allows users to browse artworks, filter by artist or century, and inspect visual summaries of the collection. The API also supports direct endpoint access for health checks and artwork retrieval.</p>
+					</section>
+
+					<section>
+						<h2>Docker and Deployment</h2>
+						<p>The app includes separate Dockerfiles for the API and dashboard, along with Docker Compose configurations for local development, AWS-oriented setups, and EC2-based deployment.</p>
+						<p>For cloud deployment, the intended path is AWS ECS for services, RDS for MySQL storage, and ECR for container images. The deployment flow includes building images, pushing them to ECR, and updating ECS task definitions with the correct database connection variables.</p>
+					</section>
+
+					<section>
+						<h2>What This Project Demonstrates</h2>
+						<p>This project highlights full-stack software engineering across backend APIs, databases, data visualization, containerization, and deployment. It also shows how public cultural datasets can be turned into a more accessible and exploratory user experience.</p>
+					</section>
+
+					<ul class="actions google-site-actions">
+						<li><a href="/#projects" class="button primary">Back to Projects</a></li>
+								<li><a href="/" class="button">Home</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<footer id="footer">
+				<div class="inner">
+					<section>
+						<h2>Follow</h2>
+						<ul class="icons">
+							<li><a href="https://github.com/sanjanachawla" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="7789290247" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+							<li><a href="sanjanachawla99@gmail.com" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+							<li><a href="https://www.linkedin.com/in/sanjana-chawla-2708b0210/" class="label"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</section>
+				</div>
+			</footer>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

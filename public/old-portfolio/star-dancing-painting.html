@@ -1,0 +1,278 @@
+﻿<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Star-Dancing Painting - Art-Gineering</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/mission-control.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="/" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Sanjana Chawla</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="/" class="home-return">Home</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="newventure.html">New Venture Design</a></li>
+							<li><a href="pottery.html">Simulating Pottery</a></li>
+							<li><a href="davinci.html">DaVinci</a></li>
+							<li><a href="coop1.html">Co-op 1</a></li>
+							<li><a href="coop2.html">Co-op 2</a></li>
+							<li><a href="star-dancing-painting.html">Star-Dancing Painting</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner project-page-centered">
+							<header>
+								<h1>Star-Dancing Painting</h1>
+								<p class="major">A dancing painting where the stars respond to the frequency and beat of the music</p>
+							</header>
+
+							<section class="tiles centered-feature-tile">
+								<article class="style3 no-overlay">
+									<span class="image">
+										<img src="images/dancing-lights-painting.jpeg" alt="Star-Dancing Painting closeup" />
+									</span>
+								</article>
+							</section>
+
+							<section>
+								<h2>Project Intent</h2>
+								<p>The Star-Dancing Painting explores how engineering tools can amplify traditional art. I designed a layered canvas that responds to music and gestures, using microcontroller-driven LEDs to highlight the paint strokes in motion. The result is an interactive, glowing night-sky piece that feels alive even when standing still.</p>
+							</section>
+
+							<section>
+								<h1>ðŸŽµ Audio-Reactive LED Matrix (Arduino)</h1>
+
+								<p>
+								A real-time audio visualization system that captures sound through a microphone,
+								performs frequency analysis using FFT, and maps the dominant frequency and volume
+								to dynamic patterns on an LED matrix.
+								</p>
+
+								<div class="section">
+								<h2>Overview</h2>
+								<ul>
+								<li>Audio sampled via analog microphone</li>
+								<li>FFT extracts dominant frequency</li>
+								<li>Frequency + volume mapped to LED position and brightness</li>
+								<li>Real-time LED response to music</li>
+								</ul>
+								</div>
+
+								<div class="section">
+								<h2>Features</h2>
+								<ul>
+								<li>FFT-based frequency detection</li>
+								<li>256-pixel LED mapping</li>
+								<li>Dynamic volume normalization</li>
+								<li>Adaptive calibration over time</li>
+								<li>Fail-safe LED shutdown</li>
+								<li>Multiple visualization modes</li>
+								</ul>
+								</div>
+
+								<div class="section">
+								<h2>Hardware</h2>
+								<ul>
+								<li>Arduino Uno</li>
+								<li>Analog microphone module</li>
+								<li>WS2812B LED matrix (256 LEDs)</li>
+								<li>External power supply (recommended)</li>
+								</ul>
+								</div>
+
+								<div class="section">
+								<h2>Wiring</h2>
+								<table>
+								<tr><th>Component</th><th>Arduino Pin</th></tr>
+								<tr><td>Microphone A0</td><td>A0</td></tr>
+								<tr><td>Microphone D0</td><td>D3</td></tr>
+								<tr><td>LED Data</td><td>D7</td></tr>
+								<tr><td>LED Power</td><td>5V (external recommended)</td></tr>
+								<tr><td>Ground</td><td>GND</td></tr>
+								</table>
+								</div>
+
+								<div class="section">
+								<h2>Software Dependencies</h2>
+								<ul>
+								<li>arduinoFFT</li>
+								<li>FastLED</li>
+								</ul>
+								</div>
+
+								<div class="section">
+								<h2>How It Works</h2>
+
+								<h3>1. Audio Sampling</h3>
+								<ul>
+								<li>Signal read from A0</li>
+								<li>Sampled at 2048 Hz</li>
+								<li>128 samples per cycle</li>
+								</ul>
+
+								<h3>2. Frequency Analysis</h3>
+								<ul>
+								<li>FFT converts signal to frequency domain</li>
+								<li>Dominant frequency extracted</li>
+								</ul>
+
+								<h3>3. Normalization</h3>
+								<ul>
+								<li>Tracks min/max frequency and volume</li>
+								<li>Auto-adjusts sensitivity over time</li>
+								</ul>
+
+								<h3>4. LED Mapping</h3>
+								<table>
+								<tr><th>Input</th><th>Output</th></tr>
+								<tr><td>Frequency</td><td>LED position (0â€“255)</td></tr>
+								<tr><td>Volume</td><td>Brightness (0â€“255)</td></tr>
+								</table>
+
+								</div>
+
+								<div class="section">
+								<h2>Visualization Modes</h2>
+
+								<h3>Glimmer Mode</h3>
+								<ul>
+								<li>Single LED reacts to frequency</li>
+								<li>Brightness based on volume</li>
+								</ul>
+
+								<h3>Gaussian Spread</h3>
+								<ul>
+								<li>Light spreads around peak</li>
+								<li>Color transitions across LED regions</li>
+								</ul>
+
+								<h3>All-Off Mode</h3>
+								<ul>
+								<li>Triggers when no sound detected</li>
+								<li>7-second fail-safe reset</li>
+								</ul>
+
+								</div>
+
+								<div class="section">
+								<h2>Key Parameters</h2>
+
+								<pre><code>#define SAMPLES 128
+								#define SAMPLING_FREQUENCY 2048
+								#define NUM_LEDS 256</code></pre>
+
+								</div>
+
+								<div class="section">
+								<h2>Running the Project</h2>
+								<ol>
+								<li>Install libraries</li>
+								<li>Upload code to Arduino</li>
+								<li>Open Serial Monitor (9600 baud)</li>
+								<li>Play music near microphone</li>
+								<li>Observe LED response</li>
+								</ol>
+								</div>
+
+								<div class="section">
+								<h2>Notes</h2>
+								<ul>
+								<li>FFT resolution limited by Arduino Uno</li>
+								<li>External power recommended for LEDs</li>
+								<li>Auto-calibration adjusts to environment</li>
+								</ul>
+								</div>
+
+								<div class="section">
+								<h2>Future Improvements</h2>
+								<ul>
+								<li>Multi-band visualization</li>
+								<li>Wireless control (Bluetooth/WiFi)</li>
+								<li>Upgrade to ESP32 / Teensy</li>
+								</ul>
+								</div>
+							</section>
+
+							<section>
+								<h2>Showcase</h2>
+								<p>Watch a demo of the Star-Dancing Painting in action. The clip captures both the physical build details and the responsive lighting that makes the piece feel alive.</p>
+								<div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+									<iframe src="https://www.youtube.com/embed/8iPxVbSSiy8" title="Star-Dancing Painting demo 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+								</div>
+
+								<div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+									<iframe src="https://www.youtube.com/embed/ycfEcMKCaQI" title="Star-Dancing Painting demo 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+								</div>
+							</section>
+							
+
+							<section>
+								<h2>Reflection</h2>
+								<p>This piece reminded me how engineering rigor can enhance playful creativity. The most challenging part was balancing the electronics layout with the aesthetics of the brush strokes, but seeing the lights â€œdanceâ€ with the painting makes the experimentation worth it.</p>
+							</section>
+
+							<ul class="actions google-site-actions">
+								<li><a href="/#projects" class="button primary">Back to Projects</a></li>
+								<li><a href="/" class="button">Home</a></li>
+							</ul>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="https://github.com/sanjanachawla" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="7789290247" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="sanjanachawla99@gmail.com" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+									<li><a href="https://www.linkedin.com/in/sanjana-chawla-2708b0210/" class="label"><span class="label">LinkedIn</span></a></li>
+								</ul>
+							</section>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
