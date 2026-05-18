@@ -16,6 +16,7 @@ type HeroSceneProps = {
 };
 
 const SATELLITE_ORBIT_RADIUS = 2.48;
+const SATELLITE_ORBIT_VERTICAL_OFFSET = -0.68;
 
 export function HeroScene({ missionEntered }: HeroSceneProps) {
   return (
@@ -150,7 +151,7 @@ function EarthSystem({ missionEntered }: HeroSceneProps) {
           roughness={0.82}
           metalness={0}
           emissive="#08235a"
-          emissiveIntensity={0.24}
+          emissiveIntensity={0.3}
         />
       </mesh>
       <mesh ref={cloudRef}>
@@ -164,11 +165,11 @@ function EarthSystem({ missionEntered }: HeroSceneProps) {
         />
       </mesh>
       <mesh>
-        <sphereGeometry args={[2.06, 96, 96]} />
+        <sphereGeometry args={[2.12, 96, 96]} />
         <meshBasicMaterial
           color="#38bdf8"
           transparent
-          opacity={0.12}
+          opacity={0.18}
           side={BackSide}
           blending={AdditiveBlending}
         />
@@ -240,7 +241,7 @@ function OrbitingSatellite({
   });
 
   return (
-    <group ref={orbitRef}>
+    <group ref={orbitRef} position={[0, SATELLITE_ORBIT_VERTICAL_OFFSET, 0]}>
       <line>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[orbitPositions, 3]} />
