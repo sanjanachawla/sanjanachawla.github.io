@@ -334,6 +334,7 @@ export function WorkExperienceTimeline() {
       <div className="relative mt-5 space-y-3 xl:hidden">
         {experiences.map((experience, index) => {
           const isActive = index === activeIndex;
+          const planet = planetThemes[index];
 
           return (
             <div
@@ -352,14 +353,23 @@ export function WorkExperienceTimeline() {
                 className="group w-full p-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/50"
                 onClick={() => setActiveIndex(isActive ? null : index)}
               >
-                <span className="block font-mono text-xs uppercase tracking-[0.16em] text-emerald-100/80">
-                  {experience.date}
-                </span>
-                <span className="mt-2 block break-words text-xl font-semibold leading-6 text-white">
-                  {experience.role}
-                </span>
-                <span className="mt-2 block break-words font-mono text-xs uppercase tracking-[0.14em] text-cyan-200/80">
-                  {experience.company}
+                <span className="flex items-start gap-3">
+                  <PlanetMarker
+                    className="mt-1 h-9 w-9"
+                    isActive={isActive}
+                    planet={planet}
+                  />
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-mono text-xs uppercase tracking-[0.16em] text-emerald-100/80">
+                      {experience.date}
+                    </span>
+                    <span className="mt-2 block break-words text-xl font-semibold leading-6 text-white">
+                      {experience.role}
+                    </span>
+                    <span className="mt-2 block break-words font-mono text-xs uppercase tracking-[0.14em] text-cyan-200/80">
+                      {experience.company}
+                    </span>
+                  </span>
                 </span>
                 <span className="mt-3 block text-sm leading-5 text-slate-300">
                   {experience.overview}
@@ -470,49 +480,7 @@ export function WorkExperienceTimeline() {
                     experience.orbit.side === "left" ? "flex-row-reverse" : ""
                   } focus:outline-none`}
                 >
-                  <motion.span
-                    aria-hidden="true"
-                    animate={{
-                      boxShadow: isActive ? planet.activeShadow : planet.idleShadow,
-                      scale: isActive ? [1, 1.08, 1] : [1, 1.02, 1],
-                    }}
-                    className={`relative h-7 w-7 shrink-0 rounded-full transition-opacity duration-300 ${
-                      isActive ? "opacity-100" : "opacity-55"
-                    }`}
-                    title={planet.name}
-                    transition={{ duration: isActive ? 1.7 : 2.4, repeat: Infinity }}
-                  >
-                    {planet.ringClassName ? (
-                      <span className={planet.ringClassName} />
-                    ) : null}
-                    <span
-                      className={`absolute inset-0 overflow-hidden rounded-full border ${
-                        isActive ? "border-white/90" : "border-cyan-100/25"
-                      }`}
-                      style={{ background: planet.body }}
-                    >
-                      <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_28%_24%,rgba(255,255,255,0.72),transparent_28%)]" />
-                      <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_74%_78%,rgba(0,0,0,0.42),transparent_46%)]" />
-                      {planet.band ? (
-                        <span
-                          className="absolute left-[-16%] w-[132%] rounded-full opacity-80"
-                          style={{
-                            background: planet.band.background,
-                            height: planet.band.height,
-                            top: planet.band.top,
-                            transform: planet.band.transform,
-                          }}
-                        />
-                      ) : null}
-                      {planet.spots?.map((spot) => (
-                        <span
-                          key={`${planet.name}-${spot.className}`}
-                          className={spot.className}
-                          style={{ background: spot.background }}
-                        />
-                      ))}
-                    </span>
-                  </motion.span>
+                  <PlanetMarker isActive={isActive} planet={planet} />
                   <span
                     className={`h-px w-8 shrink-0 bg-gradient-to-r transition duration-300 ${
                       experience.orbit.side === "left"
@@ -568,6 +536,60 @@ export function WorkExperienceTimeline() {
         </AnimatePresence>
       </div>
     </motion.div>
+  );
+}
+
+function PlanetMarker({
+  className = "h-7 w-7",
+  isActive,
+  planet,
+}: {
+  className?: string;
+  isActive: boolean;
+  planet: PlanetTheme;
+}) {
+  return (
+    <motion.span
+      aria-hidden="true"
+      animate={{
+        boxShadow: isActive ? planet.activeShadow : planet.idleShadow,
+        scale: isActive ? [1, 1.08, 1] : [1, 1.02, 1],
+      }}
+      className={`relative shrink-0 rounded-full transition-opacity duration-300 ${
+        isActive ? "opacity-100" : "opacity-70"
+      } ${className}`}
+      title={planet.name}
+      transition={{ duration: isActive ? 1.7 : 2.4, repeat: Infinity }}
+    >
+      {planet.ringClassName ? <span className={planet.ringClassName} /> : null}
+      <span
+        className={`absolute inset-0 overflow-hidden rounded-full border ${
+          isActive ? "border-white/90" : "border-cyan-100/25"
+        }`}
+        style={{ background: planet.body }}
+      >
+        <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_28%_24%,rgba(255,255,255,0.72),transparent_28%)]" />
+        <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_74%_78%,rgba(0,0,0,0.42),transparent_46%)]" />
+        {planet.band ? (
+          <span
+            className="absolute left-[-16%] w-[132%] rounded-full opacity-80"
+            style={{
+              background: planet.band.background,
+              height: planet.band.height,
+              top: planet.band.top,
+              transform: planet.band.transform,
+            }}
+          />
+        ) : null}
+        {planet.spots?.map((spot) => (
+          <span
+            key={`${planet.name}-${spot.className}`}
+            className={spot.className}
+            style={{ background: spot.background }}
+          />
+        ))}
+      </span>
+    </motion.span>
   );
 }
 
