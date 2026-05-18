@@ -62,16 +62,19 @@ const experiences: Experience[] = [
     domain: "Software, Physics, Aerospace, Research and Development",
     date: "June 2023 - Present",
     overview:
-      "Contributed to three satellite R&D projects focused on on-board vessel detection and enhanced maritime surveillance capabilities.",
+      "Contributed to three satellite R&D projects focused on on-board vessel detection and enhancing maritime surveillance capabilities.",
     responsibilities: [
-      "Developed the full Python backend system for the project ground segment, enabling telemetry parsing, product parsing, satellite uplink, and GUIs for usability.",
-      "Used SQL, databases, bit-level manipulation, CI/CD, and PyTest.",
-      "Performed EGSE and AIT operations using Python.",
+      "Vessel Detection On-board Processing",
+      "Developed the full backend system in Python for the ground segment of this project, enabling the full data processing pipeline for telemetry and product parsing, uplink to the satellite, and created GUIs for usability.",
+      "Used SQL, databases, bit-level manipulations, CI/CD, and PyTest.",
+      "Performed EGSE (Electrical Ground Support Equipment) and AIT (Assembly, Integration, and Testing) operations using Python.",
       "Designed and performed the Factory Acceptance Test for project completion.",
-      "Designed and implemented a spacecraft testing program adopted by the AIT team, improving test efficiency and repeatability.",
-      "Reduced average operator test time from 3 hours to 7 minutes.",
-      "Conducted MATLAB research on compact polarization for vessel detection, including literature review, algorithm implementation, and experimental validation.",
-      "Implemented and benchmarked detection algorithms from academic papers, performing competitive analysis to improve vessel detection accuracy and robustness.",
+      "AIT Testing",
+      "Designed and implemented a new spacecraft testing program adopted by the AIT team, improving test efficiency and repeatability. Reduced average time taken for operators conducting tests from 3 hours to 7 minutes.",
+      "Research Work",
+      "Conducted research on Compact Polarization for Vessel Detection using MATLAB, including literature review, algorithm implementation, and experimental validation.",
+      "Aided in implementing and benchmarking detection algorithms from academic papers, performing a competitive analysis of each algorithm to improve accuracy and robustness in vessel detection performances.",
+      "Led company-wide events such as Fungineering and Women in Leadership.",
     ],
     techStack: ["Python", "SQL", "PyTest", "CI/CD", "MATLAB", "AIT", "EGSE", "Telemetry"],
     orbit: { left: 91, top: 12, side: "left" },
@@ -246,6 +249,12 @@ const particles = [
   { left: "88%", top: "30%", delay: 1.5, duration: 10.5 },
   { left: "94%", top: "80%", delay: 2.7, duration: 8.8 },
 ];
+
+const responsibilityHeadings = new Set([
+  "Vessel Detection On-board Processing",
+  "AIT Testing",
+  "Research Work",
+]);
 
 export function WorkExperienceTimeline() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -529,12 +538,29 @@ export function WorkExperienceTimeline() {
                       Key Responsibilities
                     </h4>
                     <ul className="mt-2 space-y-1.5">
-                      {activeExperience.responsibilities.map((responsibility) => (
-                        <li key={responsibility} className="flex gap-3 text-[13px] leading-5 text-slate-300">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,0.7)]" />
-                          <span>{responsibility}</span>
-                        </li>
-                      ))}
+                      {activeExperience.responsibilities.map((responsibility) => {
+                        const isHeading = responsibilityHeadings.has(responsibility);
+
+                        return (
+                          <li
+                            key={responsibility}
+                            className={
+                              isHeading
+                                ? "pt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan-100"
+                                : "flex gap-3 text-[13px] leading-5 text-slate-300"
+                            }
+                          >
+                            {isHeading ? (
+                              responsibility
+                            ) : (
+                              <>
+                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,0.7)]" />
+                                <span>{responsibility}</span>
+                              </>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </section>
 

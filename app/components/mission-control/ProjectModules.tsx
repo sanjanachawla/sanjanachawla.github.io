@@ -10,7 +10,7 @@ export function ProjectModules() {
       <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h2 className="text-4xl font-semibold tracking-normal text-white md:text-6xl">
-            Projects
+            Project Gallery
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-6 text-slate-400 md:text-right">

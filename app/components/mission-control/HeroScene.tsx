@@ -27,9 +27,9 @@ export function HeroScene({ missionEntered }: HeroSceneProps) {
       >
         <color attach="background" args={["#02050c"]} />
         <fog attach="fog" args={["#02050c", 8, 18]} />
-        <ambientLight intensity={0.18} />
-        <directionalLight position={[4, 2.5, 4]} intensity={3.4} color="#d9f7ff" />
-        <pointLight position={[-4, -2, 3]} intensity={1.2} color="#0ea5e9" />
+        <ambientLight intensity={0.22} />
+        <directionalLight position={[4, 2.5, 4]} intensity={3.65} color="#d9f7ff" />
+        <pointLight position={[-4, -2, 3]} intensity={1.35} color="#0ea5e9" />
         <StarField radius={80} depth={50} count={2400} speed={0.35} />
         <MissionCamera missionEntered={missionEntered} />
         <EarthSystem missionEntered={missionEntered} />
@@ -149,8 +149,8 @@ function EarthSystem({ missionEntered }: HeroSceneProps) {
           map={earthTexture}
           roughness={0.82}
           metalness={0}
-          emissive="#061a3d"
-          emissiveIntensity={0.18}
+          emissive="#08235a"
+          emissiveIntensity={0.24}
         />
       </mesh>
       <mesh ref={cloudRef}>
@@ -158,17 +158,17 @@ function EarthSystem({ missionEntered }: HeroSceneProps) {
         <meshStandardMaterial
           map={cloudTexture}
           transparent
-          opacity={0.38}
+          opacity={0.42}
           depthWrite={false}
           roughness={0.9}
         />
       </mesh>
       <mesh>
-        <sphereGeometry args={[2.02, 96, 96]} />
+        <sphereGeometry args={[2.06, 96, 96]} />
         <meshBasicMaterial
           color="#38bdf8"
           transparent
-          opacity={0.085}
+          opacity={0.12}
           side={BackSide}
           blending={AdditiveBlending}
         />
@@ -299,9 +299,9 @@ function createEarthTexture(): Texture {
   }
 
   const ocean = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  ocean.addColorStop(0, "#071533");
-  ocean.addColorStop(0.45, "#0b3f72");
-  ocean.addColorStop(1, "#041126");
+  ocean.addColorStop(0, "#09204a");
+  ocean.addColorStop(0.45, "#0d5f9f");
+  ocean.addColorStop(1, "#06152d");
   ctx.fillStyle = ocean;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -321,9 +321,9 @@ function createEarthTexture(): Texture {
     ctx.translate(x, y);
     ctx.rotate(rotation);
     const grd = ctx.createRadialGradient(0, 0, 20, 0, 0, width);
-    grd.addColorStop(0, "#3a7a66");
-    grd.addColorStop(0.65, "#315b40");
-    grd.addColorStop(1, "#183824");
+    grd.addColorStop(0, "#4b9275");
+    grd.addColorStop(0.65, "#3d6f4c");
+    grd.addColorStop(1, "#1f4a2e");
     ctx.fillStyle = grd;
     ctx.beginPath();
     ctx.ellipse(0, 0, width, height, 0, 0, Math.PI * 2);
@@ -331,7 +331,7 @@ function createEarthTexture(): Texture {
     ctx.restore();
   }
 
-  ctx.globalAlpha = 0.18;
+  ctx.globalAlpha = 0.22;
   ctx.strokeStyle = "#9bdcff";
   for (let y = 90; y < canvas.height; y += 120) {
     ctx.beginPath();
